@@ -1,0 +1,6 @@
+[submodule "home-inventory-backend"]
+	path = home-inventory-backend
+	url = https://github.com/afk-hun/home-inventory-backend.git
+[submodule "home-inventory-frontend"]
+	path = home-inventory-frontend
+	url = https://github.com/afk-hun/home-inventory-frontend.git
