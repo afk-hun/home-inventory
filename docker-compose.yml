@@ -2,6 +2,9 @@ services:
   database: 
     image: mongo:latest
     container_name: home-inventory-db-dev
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD}
     ports:
       - "27017:27017"
     volumes:
@@ -18,6 +21,7 @@ services:
       - /app/node_modules
     environment:
       - CHOKIDAR_USEPOLLING=true
+      - MONGO_URI=mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASSWORD}@database:27017/home_inventory?authSource=admin
   frontend:
     build:
       context: ./home-inventory-frontend
@@ -30,4 +34,4 @@ services:
       - /app/node_modules
     environment:
       - CHOKIDAR_USEPOLLING=true
-    
+      - VITE_API_URL=http://backend:3000
